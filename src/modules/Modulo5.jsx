@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 function Modulo5() {
   const [a, setA] = React.useState(null);
@@ -7,24 +7,27 @@ function Modulo5() {
   const [x, setX] = React.useState(null);
 
   const calculateModulo = React.useCallback((a, b, c) => {
-    for (let i = 0; true; i++) {
-      if (Math.pow(a, b) % c === i) {
-        return i;
-      }
+    // a^b mod c = x
+    let tmp = a;
+    let i = 1;
+    while (i < b) {
+      tmp = (tmp * a) % c;
+      i++;
     }
+    return tmp;
   }, []);
 
   const handleChange = React.useCallback((e) => {
     const { name, value } = e.target;
-    if (name === "a") {
+    if (name === 'a') {
       setA(parseInt(value) || null);
       return;
     }
-    if (name === "b") {
+    if (name === 'b') {
       setB(parseInt(value) || null);
       return;
     }
-    if (name === "c") {
+    if (name === 'c') {
       setC(parseInt(value) || null);
       return;
     }
